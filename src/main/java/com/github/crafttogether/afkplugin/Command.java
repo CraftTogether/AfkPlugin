@@ -12,10 +12,15 @@ public class Command implements CommandExecutor {
             sender.sendMessage(ChatColor.RED + "This command must be ran by a player");
         }
         Player player = (Player) sender;
-        //join/leave team
-        player.sendMessage(ChatColor.WHITE + "You are marked as AFK now");
-        player.sendMessage(ChatColor.GRAY + "Move around or repeat command");
-        player.sendMessage(ChatColor.GRAY + "that you'll be unmarked");
-        return false;
+
+        if (AfkPlugin.isAfk(player.getUniqueId())) {
+            AfkPlugin.removeAfkPlayer(player.getUniqueId());
+            player.sendMessage(ChatColor.GRAY + "You are no longer AFK");
+        } else {
+            AfkPlugin.addAfkPlayer(player.getUniqueId());
+            player.sendMessage(ChatColor.GRAY + "You are now AFK");
+        }
+
+        return true;
     }
 }

@@ -1,4 +1,8 @@
-name: AFK Plugin
+name: AFKPlugin
 version: '${project.version}'
 main: com.github.crafttogether.afkplugin.AfkPlugin
 api-version: 1.18
+commands:
+  afk:
+    description: Toggle AFK
+    usage: /<command>
