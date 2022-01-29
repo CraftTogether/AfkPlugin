@@ -1,4 +1,4 @@
-package com.x3rition.afk_plugin;
+package com.github.crafttogether.afkplugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
