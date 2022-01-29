@@ -1,6 +1,7 @@
 package com.github.crafttogether.afkplugin;
 
 import com.github.crafttogether.afkplugin.listeners.MessageListener;
+import com.github.crafttogether.afkplugin.listeners.MoveListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
@@ -24,6 +25,7 @@ public final class AfkPlugin extends JavaPlugin {
         getCommand("afk").setExecutor(new Command());
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new MessageListener(), this);
+        pluginManager.registerEvents(new MoveListener(), this);
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "AFK Plugin is active");
     }
 
