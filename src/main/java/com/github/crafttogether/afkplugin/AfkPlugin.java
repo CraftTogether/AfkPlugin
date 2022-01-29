@@ -1,7 +1,9 @@
 package com.github.crafttogether.afkplugin;
 
+import com.github.crafttogether.afkplugin.listeners.MessageListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashSet;
@@ -15,12 +17,14 @@ public final class AfkPlugin extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getCommand("afk").setExecutor(new Command());
+        PluginManager pluginManager = Bukkit.getPluginManager();
+        pluginManager.registerEvents(new MessageListener(), this);
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "AFK Plugin is active");
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "AFK plugin disabled");
     }
 
     public static boolean isAfk(UUID player) {
