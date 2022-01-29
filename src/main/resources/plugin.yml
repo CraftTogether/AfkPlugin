@@ -1,0 +1,4 @@
+name: AFK Plugin
+version: '${project.version}'
+main: com.x3rition.afk_plugin.AfkPlugin
+api-version: 1.18
