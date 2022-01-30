@@ -2,7 +2,10 @@ package com.github.crafttogether.weg.listeners;
 
 import com.github.crafttogether.weg.Weg;
 import com.github.crafttogether.weg.events.AfkEvent;
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.format.TextColor;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;
 
 public class AfkListener implements AfkEvent {
@@ -10,5 +13,7 @@ public class AfkListener implements AfkEvent {
     public void invoke(Player player) {
         Weg.addAfkPlayer(player.getUniqueId());
         player.sendMessage(ChatColor.GRAY + "You are now AFK");
+        TextComponent name = Component.text("[AFK] " + player.getName()).color(TextColor.color(128, 128, 128));
+        player.playerListName(name);
     }
 }
