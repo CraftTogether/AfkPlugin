@@ -3,23 +3,39 @@ package com.github.crafttogether.weg;
 import com.github.crafttogether.weg.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.UUID;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
 
 public final class Weg extends JavaPlugin {
 
+    private static JavaPlugin plugin;
     private static final HashSet<UUID> afkPlayers = new HashSet<>();
     private static final HashMap<UUID, Long> lastMoved = new HashMap<>();
 
+    private static long afkDelay;
+    private static final Timer timer = new Timer();
+    private static TimerTask afkCheck;
+
     @Override
     public void onEnable() {
+        plugin = this;
 
-        // Plugin startup logic
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+        try {
+            getConfig().load(Files.newBufferedReader(Path.of(plugin.getDataFolder() + "/config.yml")));
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+        afkDelay = getConfig().getLong("afkdelay") * 1000;
 
         getCommand("afk").setExecutor(new Command());
         PluginManager pluginManager = Bukkit.getPluginManager();
@@ -27,6 +43,21 @@ public final class Weg extends JavaPlugin {
         pluginManager.registerEvents(new MoveListener(), this);
         pluginManager.registerEvents(new JoinListener(), this);
         pluginManager.registerEvents(new LeaveListener(), this);
+
+        afkCheck = new TimerTask() {
+            @Override
+            public void run() {
+                for (Map.Entry<UUID, Long> entry : lastMoved.entrySet()) {
+                    if (entry.getValue() + afkDelay <= System.currentTimeMillis()) {
+                        Player player = Bukkit.getPlayer(entry.getKey());
+                        assert player != null;
+                        player.sendMessage(ChatColor.GRAY + "You are now AFK");
+                        addAfkPlayer(entry.getKey());
+                    }
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(afkCheck, 0, 60000);
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Weg enabled");
     }
 
