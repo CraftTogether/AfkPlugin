@@ -14,6 +14,8 @@ public class MoveListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
+        Weg.setMoved(player.getUniqueId());
+        System.out.println(player.getName() + " moved");
         if (Weg.isAfk(player.getUniqueId())) {
             for (ReturnEvent returnEvent : Weg.getReturnListeners()) {
                 returnEvent.invoke(player);

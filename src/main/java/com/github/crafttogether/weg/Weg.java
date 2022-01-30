@@ -55,7 +55,7 @@ public final class Weg extends JavaPlugin {
             @Override
             public void run() {
                 for (Map.Entry<UUID, Long> entry : lastMoved.entrySet()) {
-                    if (entry.getValue() + afkDelay <= System.currentTimeMillis()) {
+                    if ((entry.getValue() + afkDelay) <= System.currentTimeMillis()) {
                         Player player = Bukkit.getPlayer(entry.getKey());
                         assert player != null;
                         for (AfkEvent event : afkListeners) {
