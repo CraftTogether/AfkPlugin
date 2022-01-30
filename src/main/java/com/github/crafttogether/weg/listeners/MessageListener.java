@@ -1,6 +1,6 @@
-package com.github.crafttogether.afkplugin.listeners;
+package com.github.crafttogether.weg.listeners;
 
-import com.github.crafttogether.afkplugin.AfkPlugin;
+import com.github.crafttogether.weg.Weg;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -12,8 +12,8 @@ public class MessageListener implements Listener {
     @EventHandler
     public void onMessage(AsyncChatEvent event) {
         Player player = event.getPlayer();
-        if (AfkPlugin.isAfk(player.getUniqueId())) {
-            AfkPlugin.removeAfkPlayer(player.getUniqueId());
+        if (Weg.isAfk(player.getUniqueId())) {
+            Weg.removeAfkPlayer(player.getUniqueId());
             player.sendMessage(ChatColor.GRAY + "You are no longer AFK");
         }
     }

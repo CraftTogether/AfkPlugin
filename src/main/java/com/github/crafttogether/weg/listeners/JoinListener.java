@@ -1,6 +1,6 @@
-package com.github.crafttogether.afkplugin.listeners;
+package com.github.crafttogether.weg.listeners;
 
-import com.github.crafttogether.afkplugin.AfkPlugin;
+import com.github.crafttogether.weg.Weg;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -13,7 +13,7 @@ public class JoinListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if (!AfkPlugin.addPlayer(event.getPlayer().getUniqueId())) {
+        if (!Weg.addPlayer(event.getPlayer().getUniqueId())) {
             logger.error("Could not add player to hashmap, player already exists");
         }
     }

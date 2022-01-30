@@ -1,6 +1,6 @@
-package com.github.crafttogether.afkplugin.listeners;
+package com.github.crafttogether.weg.listeners;
 
-import com.github.crafttogether.afkplugin.AfkPlugin;
+import com.github.crafttogether.weg.Weg;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -8,6 +8,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class LeaveListener implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
-        AfkPlugin.removePlayer(event.getPlayer().getUniqueId());
+        Weg.removePlayer(event.getPlayer().getUniqueId());
     }
 }

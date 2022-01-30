@@ -1,4 +1,4 @@
-package com.github.crafttogether.afkplugin;
+package com.github.crafttogether.weg;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
@@ -13,11 +13,11 @@ public class Command implements CommandExecutor {
         }
         Player player = (Player) sender;
 
-        if (AfkPlugin.isAfk(player.getUniqueId())) {
-            AfkPlugin.removeAfkPlayer(player.getUniqueId());
+        if (Weg.isAfk(player.getUniqueId())) {
+            Weg.removeAfkPlayer(player.getUniqueId());
             player.sendMessage(ChatColor.GRAY + "You are no longer AFK");
         } else {
-            AfkPlugin.addAfkPlayer(player.getUniqueId());
+            Weg.addAfkPlayer(player.getUniqueId());
             player.sendMessage(ChatColor.GRAY + "You are now AFK");
         }
 

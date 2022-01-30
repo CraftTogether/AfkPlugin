@@ -1,6 +1,6 @@
-package com.github.crafttogether.afkplugin;
+package com.github.crafttogether.weg;
 
-import com.github.crafttogether.afkplugin.listeners.*;
+import com.github.crafttogether.weg.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.PluginManager;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
 
-public final class AfkPlugin extends JavaPlugin {
+public final class Weg extends JavaPlugin {
 
     private static final HashSet<UUID> afkPlayers = new HashSet<>();
     private static final HashMap<UUID, Long> lastMoved = new HashMap<>();
@@ -25,15 +25,14 @@ public final class AfkPlugin extends JavaPlugin {
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new MessageListener(), this);
         pluginManager.registerEvents(new MoveListener(), this);
-        pluginManager.registerEvents(new ChatListener(), this);
         pluginManager.registerEvents(new JoinListener(), this);
         pluginManager.registerEvents(new LeaveListener(), this);
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "AFK Plugin is active");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Weg enabled");
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "AFK plugin disabled");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Weg disabled");
     }
 
     public static boolean isAfk(UUID player) {
