@@ -1,6 +1,7 @@
 package com.github.crafttogether.weg.listeners;
 
 import com.github.crafttogether.weg.Weg;
+import com.github.crafttogether.weg.events.ReturnEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,8 +15,9 @@ public class MoveListener implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         if (Weg.isAfk(player.getUniqueId())) {
-            Weg.removeAfkPlayer(player.getUniqueId());
-            player.sendMessage(ChatColor.GRAY + "You are no longer AFK");
+            for (ReturnEvent returnEvent : Weg.getReturnListeners()) {
+                returnEvent.invoke(player);
+            }
         }
     }
 }

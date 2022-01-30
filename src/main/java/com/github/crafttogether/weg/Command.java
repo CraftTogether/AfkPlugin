@@ -1,5 +1,7 @@
 package com.github.crafttogether.weg;
 
+import com.github.crafttogether.weg.events.AfkEvent;
+import com.github.crafttogether.weg.events.ReturnEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,14 +13,19 @@ public class Command implements CommandExecutor {
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "This command must be ran by a player");
         }
+        assert sender instanceof Player;
         Player player = (Player) sender;
 
         if (Weg.isAfk(player.getUniqueId())) {
             Weg.removeAfkPlayer(player.getUniqueId());
-            player.sendMessage(ChatColor.GRAY + "You are no longer AFK");
+            for (ReturnEvent event : Weg.getReturnListeners()) {
+                event.invoke(player);
+            }
         } else {
             Weg.addAfkPlayer(player.getUniqueId());
-            player.sendMessage(ChatColor.GRAY + "You are now AFK");
+            for (AfkEvent event : Weg.getAfkListeners()) {
+                event.invoke(player);
+            }
         }
 
         return true;

@@ -1,5 +1,7 @@
 package com.github.crafttogether.weg;
 
+import com.github.crafttogether.weg.events.AfkEvent;
+import com.github.crafttogether.weg.events.ReturnEvent;
 import com.github.crafttogether.weg.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,6 +21,9 @@ public final class Weg extends JavaPlugin {
     private static JavaPlugin plugin;
     private static final HashSet<UUID> afkPlayers = new HashSet<>();
     private static final HashMap<UUID, Long> lastMoved = new HashMap<>();
+
+    private static final List<AfkEvent> afkListeners = new ArrayList<>();
+    private static final List<ReturnEvent> returnListeners = new ArrayList<>();
 
     private static long afkDelay;
     private static final Timer timer = new Timer();
@@ -51,8 +56,9 @@ public final class Weg extends JavaPlugin {
                     if (entry.getValue() + afkDelay <= System.currentTimeMillis()) {
                         Player player = Bukkit.getPlayer(entry.getKey());
                         assert player != null;
-                        player.sendMessage(ChatColor.GRAY + "You are now AFK");
-                        addAfkPlayer(entry.getKey());
+                        for (AfkEvent event : afkListeners) {
+                            event.invoke(player);
+                        }
                     }
                 }
             }
@@ -99,5 +105,21 @@ public final class Weg extends JavaPlugin {
             return true;
         }
         return false;
+    }
+
+    public static void addAfkListener(AfkEvent event) {
+        afkListeners.add(event);
+    }
+
+    public static List<AfkEvent> getAfkListeners() {
+        return afkListeners;
+    }
+
+    public static void addReturnListener(ReturnEvent event) {
+        returnListeners.add(event);
+    }
+
+    public static List<ReturnEvent> getReturnListeners() {
+        return returnListeners;
     }
 }
