@@ -1,1 +1,1 @@
-afkdelay: 1 # How long someone has to not be still for until set as AFK
+afkdelay: 5 # How long someone has to not be still for until set as AFK
