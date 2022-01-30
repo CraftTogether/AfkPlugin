@@ -48,6 +48,9 @@ public final class Weg extends JavaPlugin {
         pluginManager.registerEvents(new JoinListener(), this);
         pluginManager.registerEvents(new LeaveListener(), this);
 
+        addAfkListener(new AfkListener());
+        addReturnListener(new ReturnListener());
+
         TimerTask afkCheck = new TimerTask() {
             @Override
             public void run() {
