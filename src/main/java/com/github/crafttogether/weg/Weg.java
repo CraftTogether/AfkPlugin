@@ -27,7 +27,6 @@ public final class Weg extends JavaPlugin {
 
     private static long afkDelay;
     private static final Timer timer = new Timer();
-    private static TimerTask afkCheck;
 
     @Override
     public void onEnable() {
@@ -49,7 +48,7 @@ public final class Weg extends JavaPlugin {
         pluginManager.registerEvents(new JoinListener(), this);
         pluginManager.registerEvents(new LeaveListener(), this);
 
-        afkCheck = new TimerTask() {
+        TimerTask afkCheck = new TimerTask() {
             @Override
             public void run() {
                 for (Map.Entry<UUID, Long> entry : lastMoved.entrySet()) {
@@ -70,6 +69,8 @@ public final class Weg extends JavaPlugin {
     @Override
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Weg disabled");
+        afkListeners.clear();
+        returnListeners.clear();
     }
 
     public static boolean isAfk(UUID player) {
