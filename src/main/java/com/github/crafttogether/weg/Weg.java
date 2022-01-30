@@ -39,7 +39,7 @@ public final class Weg extends JavaPlugin {
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
-        afkDelay = getConfig().getLong("afkdelay") * 1000;
+        afkDelay = getConfig().getLong("afkdelay") * 60000;
 
         getCommand("afk").setExecutor(new Command());
         PluginManager pluginManager = Bukkit.getPluginManager();
@@ -55,7 +55,10 @@ public final class Weg extends JavaPlugin {
             @Override
             public void run() {
                 for (Map.Entry<UUID, Long> entry : lastMoved.entrySet()) {
-                    if ((entry.getValue() + afkDelay) <= System.currentTimeMillis()) {
+                    if (isAfk(entry.getKey())) {
+                        continue;
+                    }
+                    if (entry.getValue() + afkDelay < System.currentTimeMillis()) {
                         Player player = Bukkit.getPlayer(entry.getKey());
                         assert player != null;
                         for (AfkEvent event : afkListeners) {
@@ -65,7 +68,7 @@ public final class Weg extends JavaPlugin {
                 }
             }
         };
-        timer.scheduleAtFixedRate(afkCheck, 0, 60000);
+        timer.scheduleAtFixedRate(afkCheck, 0, 600);
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Weg enabled");
     }
 
