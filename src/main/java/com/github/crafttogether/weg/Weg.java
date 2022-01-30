@@ -20,7 +20,7 @@ public final class Weg extends JavaPlugin {
 
     private static JavaPlugin plugin;
     private static final HashSet<UUID> afkPlayers = new HashSet<>();
-    private static final HashMap<UUID, Long> lastMoved = new HashMap<>();
+    private static final HashMap<UUID, Long> lastInteraction = new HashMap<>();
 
     private static final List<AfkEvent> afkListeners = new ArrayList<>();
     private static final List<ReturnEvent> returnListeners = new ArrayList<>();
@@ -54,7 +54,7 @@ public final class Weg extends JavaPlugin {
         TimerTask afkCheck = new TimerTask() {
             @Override
             public void run() {
-                for (Map.Entry<UUID, Long> entry : lastMoved.entrySet()) {
+                for (Map.Entry<UUID, Long> entry : lastInteraction.entrySet()) {
                     if (isAfk(entry.getKey())) {
                         continue;
                     }
@@ -92,23 +92,23 @@ public final class Weg extends JavaPlugin {
     }
 
     @Nullable
-    public static Long getLastMoved(UUID player) {
-        return lastMoved.getOrDefault(player, null);
+    public static Long getLastInteraction(UUID player) {
+        return lastInteraction.getOrDefault(player, null);
     }
 
-    public static void setMoved(UUID player) {
-        lastMoved.remove(player);
-        lastMoved.put(player, System.currentTimeMillis());
+    public static void updateLastInteraction(UUID player) {
+        lastInteraction.remove(player);
+        lastInteraction.put(player, System.currentTimeMillis());
     }
 
     public static void removePlayer(UUID player) {
-        lastMoved.remove(player);
+        lastInteraction.remove(player);
         afkPlayers.remove(player);
     }
 
     public static boolean addPlayer(UUID player) {
-        if (!lastMoved.containsKey(player)) {
-            lastMoved.put(player, System.currentTimeMillis());
+        if (!lastInteraction.containsKey(player)) {
+            lastInteraction.put(player, System.currentTimeMillis());
             return true;
         }
         return false;

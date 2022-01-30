@@ -12,6 +12,7 @@ public class MessageListener implements Listener {
     @EventHandler
     public void onMessage(AsyncChatEvent event) {
         Player player = event.getPlayer();
+        Weg.updateLastInteraction(player.getUniqueId());
         if (Weg.isAfk(player.getUniqueId())) {
             Weg.removeAfkPlayer(player.getUniqueId());
             for (ReturnEvent returnEvent : Weg.getReturnListeners()) {
