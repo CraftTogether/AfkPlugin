@@ -13,7 +13,7 @@ To download the plugin go to [releases](https://github.com/CraftTogether/Weg/rel
 
 # Developers
 Gradle:
-```
+```gradle
 repositories {
     maven {
         url = 'https://jitpack.io'
@@ -23,7 +23,9 @@ repositories {
         url = 'https://papermc.io/repo/repository/maven-public/'
     }
 }
+```
 
+```gradle
 dependencies {
     compileOnly 'com.github.CraftTogether:weg:1.0-SNAPSHOT-4'
     compileOnly 'io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT'
@@ -31,7 +33,7 @@ dependencies {
 ```
 
 Maven:
-```
+```xml
 <repositories>
     <repository>
         <id>papermc-repo</id>
@@ -42,7 +44,9 @@ Maven:
         <url>https://jitpack.io/</url>
     </repository>
 </repositories>
+```
 
+```xml
 <dependencies>
     <dependency>
         <groupId>com.github.CraftTogether</groupId>
