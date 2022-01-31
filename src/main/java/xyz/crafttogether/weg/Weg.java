@@ -1,7 +1,5 @@
 package xyz.crafttogether.weg;
 
-import xyz.crafttogether.weg.events.AfkEvent;
-import xyz.crafttogether.weg.events.ReturnEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -22,8 +20,7 @@ public final class Weg extends JavaPlugin {
     private static final HashSet<UUID> afkPlayers = new HashSet<>();
     private static final HashMap<UUID, Long> lastInteraction = new HashMap<>();
 
-    private static final List<AfkEvent> afkListeners = new ArrayList<>();
-    private static final List<ReturnEvent> returnListeners = new ArrayList<>();
+    private static final Set<EventListener> listeners = new HashSet<>();
 
     private static long afkDelay;
     private static final Timer timer = new Timer();
@@ -48,8 +45,7 @@ public final class Weg extends JavaPlugin {
         pluginManager.registerEvents(new JoinListener(), this);
         pluginManager.registerEvents(new LeaveListener(), this);
 
-        addAfkListener(new AfkListener());
-        addReturnListener(new ReturnListener());
+        addListener(new WegListener());
 
         TimerTask afkCheck = new TimerTask() {
             @Override
@@ -61,8 +57,8 @@ public final class Weg extends JavaPlugin {
                     if (entry.getValue() + afkDelay < System.currentTimeMillis()) {
                         Player player = Bukkit.getPlayer(entry.getKey());
                         assert player != null;
-                        for (AfkEvent event : afkListeners) {
-                            event.invoke(player);
+                        for (EventListener event : listeners) {
+                            event.onAfkEvent(player);
                         }
                     }
                 }
@@ -75,8 +71,7 @@ public final class Weg extends JavaPlugin {
     @Override
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Weg disabled");
-        afkListeners.clear();
-        returnListeners.clear();
+        listeners.clear();
     }
 
     public static boolean isAfk(UUID player) {
@@ -114,27 +109,15 @@ public final class Weg extends JavaPlugin {
         return false;
     }
 
-    public static void addAfkListener(AfkEvent event) {
-        afkListeners.add(event);
+    public static void addListener(EventListener listener) {
+        listeners.add(listener);
     }
 
-    public static void removeAfkListener(AfkEvent event) {
-        afkListeners.remove(event);
+    public static void removeListener(EventListener listener) {
+        listeners.remove(listener);
     }
 
-    public static List<AfkEvent> getAfkListeners() {
-        return afkListeners;
-    }
-
-    public static void addReturnListener(ReturnEvent event) {
-        returnListeners.add(event);
-    }
-
-    public static void removeReturnListener(ReturnEvent event) {
-        returnListeners.remove(event);
-    }
-
-    public static List<ReturnEvent> getReturnListeners() {
-        return returnListeners;
+    public static Set<EventListener> getEventListeners() {
+        return listeners;
     }
 }

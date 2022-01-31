@@ -1,7 +1,5 @@
 package xyz.crafttogether.weg;
 
-import xyz.crafttogether.weg.events.AfkEvent;
-import xyz.crafttogether.weg.events.ReturnEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,13 +16,13 @@ public class Command implements CommandExecutor {
 
         if (Weg.isAfk(player.getUniqueId())) {
             Weg.removeAfkPlayer(player.getUniqueId());
-            for (ReturnEvent event : Weg.getReturnListeners()) {
-                event.invoke(player);
+            for (EventListener listener : Weg.getEventListeners()) {
+                listener.onReturnEvent(player);
             }
         } else {
             Weg.addAfkPlayer(player.getUniqueId());
-            for (AfkEvent event : Weg.getAfkListeners()) {
-                event.invoke(player);
+            for (EventListener listener : Weg.getEventListeners()) {
+                listener.onAfkEvent(player);
             }
         }
 

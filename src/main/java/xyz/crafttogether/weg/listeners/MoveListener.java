@@ -1,7 +1,7 @@
 package xyz.crafttogether.weg.listeners;
 
+import xyz.crafttogether.weg.EventListener;
 import xyz.crafttogether.weg.Weg;
-import xyz.crafttogether.weg.events.ReturnEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,8 +15,8 @@ public class MoveListener implements Listener {
         Player player = event.getPlayer();
         Weg.updateLastInteraction(player.getUniqueId());
         if (Weg.isAfk(player.getUniqueId())) {
-            for (ReturnEvent returnEvent : Weg.getReturnListeners()) {
-                returnEvent.invoke(player);
+            for (EventListener listener : Weg.getEventListeners()) {
+                listener.onReturnEvent(player);
             }
         }
     }
