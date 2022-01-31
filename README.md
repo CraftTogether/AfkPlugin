@@ -1,3 +1,4 @@
+[![](https://jitpack.io/v/CraftTogether/weg.svg)](https://jitpack.io/#CraftTogether/weg)
 # Weg
 An AFK plugin for 1.18 minecraft, provides an API to allow other plugins to listen for AFK events
 
@@ -18,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'com.github.CraftTogether:weg:1.0-SNAPSHOT-1'
+    compileOnly 'com.github.CraftTogether:weg:1.0-SNAPSHOT-2'
     compileOnly 'io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT'
 }
 ```
@@ -40,7 +41,7 @@ Maven:
     <dependency>
         <groupId>com.github.CraftTogether</groupId>
         <artifactId>weg</artifactId>
-        <version>1.0-SNAPSHOT-1</version>
+        <version>1.0-SNAPSHOT-2</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
