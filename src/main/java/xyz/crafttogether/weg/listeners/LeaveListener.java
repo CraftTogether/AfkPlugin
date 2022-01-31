@@ -1,6 +1,6 @@
-package com.github.crafttogether.weg.listeners;
+package xyz.crafttogether.weg.listeners;
 
-import com.github.crafttogether.weg.Weg;
+import xyz.crafttogether.weg.Weg;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;

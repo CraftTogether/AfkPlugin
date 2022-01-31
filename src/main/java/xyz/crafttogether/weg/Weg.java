@@ -1,14 +1,14 @@
-package com.github.crafttogether.weg;
+package xyz.crafttogether.weg;
 
-import com.github.crafttogether.weg.events.AfkEvent;
-import com.github.crafttogether.weg.events.ReturnEvent;
-import com.github.crafttogether.weg.listeners.*;
+import xyz.crafttogether.weg.events.AfkEvent;
+import xyz.crafttogether.weg.events.ReturnEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import xyz.crafttogether.weg.listeners.*;
 
 import javax.annotation.Nullable;
 import java.io.IOException;

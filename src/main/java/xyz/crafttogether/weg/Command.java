@@ -1,7 +1,7 @@
-package com.github.crafttogether.weg;
+package xyz.crafttogether.weg;
 
-import com.github.crafttogether.weg.events.AfkEvent;
-import com.github.crafttogether.weg.events.ReturnEvent;
+import xyz.crafttogether.weg.events.AfkEvent;
+import xyz.crafttogether.weg.events.ReturnEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

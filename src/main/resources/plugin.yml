@@ -1,6 +1,6 @@
 name: Weg
 version: '${project.version}'
-main: com.github.crafttogether.weg.Weg
+main: xyz.crafttogether.weg.Weg
 api-version: 1.18
 commands:
   afk:

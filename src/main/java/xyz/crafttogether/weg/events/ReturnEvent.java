@@ -1,4 +1,4 @@
-package com.github.crafttogether.weg.events;
+package xyz.crafttogether.weg.events;
 
 import org.bukkit.entity.Player;
 
