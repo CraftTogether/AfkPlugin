@@ -25,7 +25,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'com.github.CraftTogether:weg:1.0-SNAPSHOT-2'
+    compileOnly 'com.github.CraftTogether:weg:1.0-SNAPSHOT-4'
     compileOnly 'io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT'
 }
 ```
@@ -47,7 +47,7 @@ Maven:
     <dependency>
         <groupId>com.github.CraftTogether</groupId>
         <artifactId>weg</artifactId>
-        <version>1.0-SNAPSHOT-2</version>
+        <version>1.0-SNAPSHOT-4</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
