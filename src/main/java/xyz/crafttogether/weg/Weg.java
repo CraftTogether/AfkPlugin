@@ -118,12 +118,20 @@ public final class Weg extends JavaPlugin {
         afkListeners.add(event);
     }
 
+    public static void removeAfkListener(AfkEvent event) {
+        afkListeners.remove(event);
+    }
+
     public static List<AfkEvent> getAfkListeners() {
         return afkListeners;
     }
 
     public static void addReturnListener(ReturnEvent event) {
         returnListeners.add(event);
+    }
+
+    public static void removeReturnListener(ReturnEvent event) {
+        returnListeners.remove(event);
     }
 
     public static List<ReturnEvent> getReturnListeners() {
