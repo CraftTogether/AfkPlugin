@@ -12,6 +12,8 @@ An AFK plugin for 1.18 minecraft, provides an API to allow other plugins to list
 To download the plugin go to [releases](https://github.com/CraftTogether/Weg/releases)
 
 # Developers
+Replace `VERSION` with the latest version (see badges at the top of the README)
+
 Gradle:
 ```gradle
 repositories {
@@ -27,7 +29,7 @@ repositories {
 
 ```gradle
 dependencies {
-    compileOnly 'com.github.CraftTogether:weg:1.0-SNAPSHOT-4'
+    compileOnly 'com.github.CraftTogether:weg:VERSION'
     compileOnly 'io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT'
 }
 ```
@@ -51,7 +53,7 @@ Maven:
     <dependency>
         <groupId>com.github.CraftTogether</groupId>
         <artifactId>weg</artifactId>
-        <version>1.0-SNAPSHOT-4</version>
+        <version>VERSION</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
