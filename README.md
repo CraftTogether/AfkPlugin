@@ -36,11 +36,11 @@ dependencies {
 
 Maven:
 ```xml
-<repositories>
+<repository>
     <repository>
         <id>papermc-repo</id>
         <url>https://papermc.io/repo/repository/maven-public/</url>
-    </repositories>
+    </repository>
     <repository>
         <id>jitpack.io</id>
         <url>https://jitpack.io/</url>
