@@ -109,6 +109,10 @@ public final class Weg extends JavaPlugin {
         return false;
     }
 
+    public static int getAfkPlayers() {
+        return afkPlayers.size();
+    }
+
     public static void addListener(EventListener listener) {
         listeners.add(listener);
     }
