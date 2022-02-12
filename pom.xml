@@ -11,6 +11,23 @@
 
     <name>weg</name>
 
+    <developers>
+        <developer>
+            <name>PolarianDev</name>
+            <email>polariandev@protonmail.com</email>
+        </developer>
+        <developer>
+            <name>Xerition</name>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The Unlicense</name>
+            <url>https://unlicense.org/</url>
+        </license>
+    </licenses>
+
     <properties>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
