@@ -9,7 +9,7 @@
     <version>1.1-SNAPSHOT-1</version>
     <packaging>jar</packaging>
 
-    <name>AFK Plugin</name>
+    <name>weg</name>
 
     <properties>
         <java.version>17</java.version>
@@ -17,6 +17,13 @@
     </properties>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-http</artifactId>
+                <version>3.5.1</version>
+            </extension>
+        </extensions>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -62,6 +69,13 @@
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>polarian-repo</id>
+            <url>https://repo.polarian.dev/repo</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
