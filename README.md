@@ -6,6 +6,7 @@
 [![](https://img.shields.io/github/downloads/CraftTogether/Weg/total.svg)](https://github.com/CraftTogether/Weg/releases)
 ![](https://img.shields.io/github/issues/CraftTogether/Weg.svg)
 ![](https://img.shields.io/github/issues-pr/CraftTogether/Weg.svg)
+![](https://img.shields.io/github/repo-size/CraftTogether/Weg)
 # Weg
 An AFK plugin for 1.18 minecraft, provides an API to allow other plugins to listen for AFK events
 
